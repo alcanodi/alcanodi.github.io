@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema de Diseño — Alberto Cano D.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <style>
+    /* Estilos específicos de la página Styleguide */
+    .sg-header {
+      border-bottom: 1px solid var(--border-hairline);
+      padding-block: 1.5rem;
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      z-index: 10;
+    }
+    .sg-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      color: var(--ink-primary);
+    }
+    .brand-shapes {
+      display: grid;
+      grid-template-columns: repeat(2, 8px);
+      gap: 2px;
+    }
+    .brand-shapes span { width: 8px; height: 8px; display: block; }
+
+    .sg-section {
+      padding-block: var(--space-xl);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+    .sg-label-col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    @media (min-width: 900px) {
+      .sg-label-col {
+        grid-template-columns: 260px 1fr;
+        gap: 4rem;
+      }
+    }
+
+    /* Demo Hero estilo Sasaki */
+    .hero-statement {
+      font-size: var(--text-hero);
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+      font-weight: 700;
+      margin: 1rem 0 1.5rem;
+    }
+    .hero-statement em {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--accent-econometrics);
+    }
+
+    /* Swatches */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .swatch {
+      border: 1px solid var(--border-hairline);
+      background: var(--bg-canvas);
+    }
+    .swatch-color { height: 84px; border-bottom: 1px solid var(--border-hairline); }
+    .swatch-meta { padding: 0.85rem; font-size: var(--text-xs); }
+    .swatch-meta strong { display: block; font-size: var(--text-sm); margin-bottom: 0.25rem; }
+
+    /* KPI Strip (Métricas reales del CV) */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      border-top: 1px solid var(--border-hairline);
+      border-left: 1px solid var(--border-hairline);
+    }
+    .kpi-card {
+      padding: 2rem 1.5rem;
+      background: var(--bg-surface);
+      border-right: 1px solid var(--border-hairline);
+      border-bottom: 1px solid var(--border-hairline);
+      transition: background-color var(--duration-fast) var(--ease-architectural);
+    }
+    .kpi-card:hover { background: var(--bg-canvas); }
+    .kpi-value {
+      font-family: var(--font-mono);
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      display: block;
+      margin: 0.75rem 0 0.5rem;
+    }
+
+    /* Quote editorial */
+    .editorial-quote {
+      background: var(--bg-surface);
+      padding: clamp(2rem, 5vw, 3.5rem);
+      border-left: 3px solid var(--ink-primary);
+    }
+    .editorial-quote blockquote {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+      line-height: 1.3;
+    }
+
+    /* Tabla de Experiencia / Proyectos */
+    .work-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding-block: 1.75rem;
+      border-top: 1px solid var(--border-hairline);
+      transition: padding-inline-start var(--duration-fast) var(--ease-architectural),
+                  border-color var(--duration-fast) var(--ease-architectural);
+    }
+    .work-row:last-child { border-bottom: 1px solid var(--border-hairline); }
+    .work-row:hover {
+      padding-inline-start: 0.75rem;
+      border-top-color: var(--ink-primary);
+    }
+    @media (min-width: 768px) {
+      .work-row { grid-template-columns: 160px 1fr auto; align-items: start; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="sg-header">
+    <div class="container sg-nav">
+      <a href="#" class="brand-mark">
+        <span class="brand-shapes" aria-hidden="true">
+          <span style="background: var(--accent-econometrics)"></span>
+          <span style="background: var(--accent-engineering); border-radius: 50%"></span>
+          <span style="background: var(--accent-ai)"></span>
+          <span style="background: var(--accent-strategy)"></span>
+        </span>
+        <span>ALBERTO CANO D. <span style="font-weight:400; color:var(--ink-muted)">/ DESIGN SYSTEM v1.0</span></span>
+      </a>
+      <span class="eyebrow"><span class="dot dot--ai"></span> Estilo Sasaki · HTML/CSS Puro</span>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. HERO & MENSAJE -->
+    <section class="sg-section">
+      <div class="container sg-label-col">
+        <div>
+          <span class="eyebrow">01 / Hero & Tipografía</span>
+          <p style="font-size: var(--text-sm); color: var(--ink-secondary); margin-top: 0.75rem;">
+            Titulares geométricos con énfasis editorial en <em>Newsreader</em>, inspirados en la estructura modular de Sasaki.
+          </p>
+        </div>
+        <div>
+          <span class="eyebrow"><span class="dot dot--econometrics"></span> Econometric Modeler &amp; Senior Data Analyst</span>
+          <h1 class="hero-statement">
+            Estrategia,<br>
+            datos y <em>automatización</em><br>
+            orientada a ROI.
+          </h1>
+          <p style="font-size: var(--text-body-lg); color: var(--ink-secondary); max-width: 60ch;">
+            Soy un apasionado de los datos con una visión estratégica. Mi objetivo es cerrar la brecha entre la capacidad técnica y los objetivos de negocio.
+          </p>
+          <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:2rem;">
+            <a href="#proyectos" class="btn btn-primary">
+              Ver Casos de Impacto
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5"/></svg>
+            </a>
+            <a href="mailto:alcanodi@gmail.com" class="btn btn-secondary">Contactar</a>
+            <a href="#filosofia" class="btn btn-ghost">Descargar CV (PDF) →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. PALETA DE COLOR -->
+    <section class="sg-section">
+      <div class="container sg-label-col">
+        <div>
+          <span class="eyebrow">02 / Paleta &amp; Disciplinas</span>
+          <p style="font-size: var(--text-sm); color: var(--ink-secondary); margin-top: 0.75rem;">
+            Base neutra arquitectónica y 4 acentos funcionales para identificar cada área de tu portafolio.
+          </p>
+        </div>
+        <div class="swatch-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--bg-canvas);"></div>
+            <div class="swatch-meta"><strong>Canvas White</strong><span class="mono-num">#FFFFFF · Fondo Base</span></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--bg-surface);"></div>
+            <div class="swatch-meta"><strong>Architectural Stone</strong><span class="mono-num">#F5F4F0 · Superficies</span></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--ink-primary);"></div>
+            <div class="swatch-meta"><strong>Obsidian Ink</strong><span class="mono-num">#111111 · Títulos / CTA</span></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--accent-econometrics);"></div>
+            <div class="swatch-meta"><strong>Econometrics &amp; MMM</strong><span class="mono-num">#C83E2B · AA 5.02:1</span></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--accent-engineering);"></div>
+            <div class="swatch-meta"><strong>Data &amp; Orchestration</strong><span class="mono-num">#1D4ED8 · AA 6.7:1</span></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--accent-ai);"></div>
+            <div class="swatch-meta"><strong>AI Agents &amp; ROI</strong><span class="mono-num">#0F766E · AA 5.4:1</span></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--accent-strategy);"></div>
+            <div class="swatch-meta"><strong>Finance &amp; Teaching</strong><span class="mono-num">#B45309 · AA 5.02:1</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. BLOQUE DE IMPACTO CUANTITATIVO -->
+    <section class="sg-section" id="proyectos">
+      <div class="container sg-label-col">
+        <div>
+          <span class="eyebrow">03 / Métricas de Impacto</span>
+          <p style="font-size: var(--text-sm); color: var(--ink-secondary); margin-top: 0.75rem;">
+            Cifras tabulares reales extraídas de tu CV en lugar de barras de porcentaje subjetivas.
+          </p>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span class="eyebrow"><span class="dot dot--econometrics"></span> Escala Global</span>
+            <span class="kpi-value">40+</span>
+            <p style="margin:0; font-size: var(--text-sm); color: var(--ink-secondary);">
+              Proyectos globales de Marketing Mix Modeling (MMM) para marcas FMCG como L'Oréal, Walmart y Bimbo.
+            </p>
+          </div>
+          <div class="kpi-card">
+            <span class="eyebrow"><span class="dot dot--engineering"></span> Insight Delivery</span>
+            <span class="kpi-value">-90%</span>
+            <p style="margin:0; font-size: var(--text-sm); color: var(--ink-secondary);">
+              Reducción de esfuerzo operativo en reportes al migrar procesos manuales a dashboards dinámicos.
+            </p>
+          </div>
+          <div class="kpi-card">
+            <span class="eyebrow"><span class="dot dot--ai"></span> AI Agents &amp; ETL</span>
+            <span class="kpi-value">+50%</span>
+            <p style="margin:0; font-size: var(--text-sm); color: var(--ink-secondary);">
+              Mayor alcance de proyectos y reducción >50% en tiempos de depuración usando agentes de IA contextualizados.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. FILOSOFÍA & TRAYECTORIA -->
+    <section class="sg-section" id="filosofia">
+      <div class="container sg-label-col">
+        <div>
+          <span class="eyebrow">04 / Filosofía &amp; Trayectoria</span>
+        </div>
+        <div style="display:grid; gap: 2.5rem;">
+          <div class="editorial-quote">
+            <blockquote>
+              “Los datos sin contexto son solo ruido. El verdadero valor reside en la capacidad de traducir los números en acciones comerciales claras.”
+            </blockquote>
+          </div>
+
+          <div>
+            <div class="work-row">
+              <span class="mono-num" style="font-size: var(--text-sm); color: var(--ink-muted);">OCT 2024 — PRES.</span>
+              <div>
+                <span class="eyebrow"><span class="dot dot--econometrics"></span> Market Fusion Analytics | iLink digital</span>
+                <h3 style="margin: 0.35rem 0 0.5rem; font-size: var(--text-h3);">Econometric Modeler · Pricing &amp; Marketing Analytics</h3>
+                <p style="margin:0; color: var(--ink-secondary); font-size: var(--text-sm);">
+                  Automatización integral del ciclo MMM: orquestación KNIME + Python + Snowflake, matrices de elasticidad (-80% tiempo de actualización) y validación proactiva de modelos.
+                </p>
+              </div>
+              <div style="display:flex; gap:0.4rem; flex-wrap:wrap; max-width:220px;">
+                <span class="pill">MMM</span><span class="pill">Snowflake</span><span class="pill">Python</span>
+              </div>
+            </div>
+
+            <div class="work-row">
+              <span class="mono-num" style="font-size: var(--text-sm); color: var(--ink-muted);">MAR 2024 — PRES.</span>
+              <div>
+                <span class="eyebrow"><span class="dot dot--engineering"></span> AD Healthcare · Contractor</span>
+                <h3 style="margin: 0.35rem 0 0.5rem; font-size: var(--text-h3);">Senior Data Analyst · Data Analytics &amp; BI</h3>
+                <p style="margin:0; color: var(--ink-secondary); font-size: var(--text-sm);">
+                  ETL financieros automatizados (-80% procesamiento manual), estandarización en KNIME, optimización DAX en Power BI y fuzzy merging hacia Snowflake.
+                </p>
+              </div>
+              <div style="display:flex; gap:0.4rem; flex-wrap:wrap; max-width:220px;">
+                <span class="pill">Power BI</span><span class="pill">KNIME</span><span class="pill">AI Agents</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

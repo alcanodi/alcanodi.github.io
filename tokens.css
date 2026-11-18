@@ -1,0 +1,167 @@
+/* =========================================================
+   DESIGN TOKENS — ALBERTO CANO D. (Sasaki Editorial System)
+   ========================================================= */
+:root {
+  /* Superficies */
+  --bg-canvas: #ffffff;
+  --bg-surface: #f5f4f0;
+  --bg-surface-hover: #eceae3;
+  --bg-dark: #111111;
+
+  /* Tintas */
+  --ink-primary: #111111;
+  --ink-secondary: #52524d;
+  --ink-muted: #767670;
+  --ink-inverse: #ffffff;
+
+  /* Bordes estructurales */
+  --border-hairline: #e2e0d8;
+  --border-strong: #111111;
+
+  /* Acentos modulares por disciplina */
+  --accent-econometrics: #c83e2b;
+  --accent-engineering: #1d4ed8;
+  --accent-ai: #0f766e;
+  --accent-strategy: #b45309;
+
+  /* Tipografía */
+  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Newsreader', Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  /* Escala Tipográfica Fluida */
+  --text-hero: clamp(2.75rem, 6.2vw, 5.25rem);
+  --text-h1: clamp(2.1rem, 4vw, 3.25rem);
+  --text-h2: clamp(1.5rem, 2.5vw, 2.15rem);
+  --text-h3: 1.25rem;
+  --text-body-lg: 1.125rem;
+  --text-body: 1rem;
+  --text-sm: 0.875rem;
+  --text-xs: 0.75rem;
+
+  /* Espaciado & Layout */
+  --container-max: 1320px;
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 3rem;
+  --space-xl: 5.5rem;
+
+  /* Geometría & Movimiento */
+  --radius-sharp: 0px;
+  --radius-pill: 9999px;
+  --ease-architectural: cubic-bezier(0.2, 0, 0, 1);
+  --duration-fast: 180ms;
+}
+
+/* Reset mínimo ultrarrápido */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background-color: var(--bg-canvas);
+  color: var(--ink-primary);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Utilidades estructurales */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.mono-num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--ink-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Puntos de disciplina estilo Sasaki */
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.dot--econometrics { background-color: var(--accent-econometrics); }
+.dot--engineering  { background-color: var(--accent-engineering); }
+.dot--ai           { background-color: var(--accent-ai); }
+.dot--strategy     { background-color: var(--accent-strategy); }
+
+/* Botones Arquitectónicos */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.9rem 1.5rem;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: var(--radius-sharp);
+  border: 1px solid var(--border-strong);
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-architectural),
+              color var(--duration-fast) var(--ease-architectural),
+              transform var(--duration-fast) var(--ease-architectural);
+}
+.btn-primary {
+  background-color: var(--ink-primary);
+  color: var(--ink-inverse);
+}
+.btn-primary:hover {
+  background-color: var(--accent-econometrics);
+  border-color: var(--accent-econometrics);
+}
+.btn-secondary {
+  background-color: transparent;
+  color: var(--ink-primary);
+}
+.btn-secondary:hover {
+  background-color: var(--bg-surface);
+}
+.btn-ghost {
+  border-color: transparent;
+  padding-inline: 0.25rem;
+  color: var(--ink-primary);
+}
+.btn-ghost:hover {
+  color: var(--accent-econometrics);
+}
+.btn-ghost svg, .btn-primary svg {
+  transition: transform var(--duration-fast) var(--ease-architectural);
+}
+.btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* Pills de Stack Técnico */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.32rem 0.8rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-pill);
+  background: var(--bg-canvas);
+  color: var(--ink-secondary);
+}
